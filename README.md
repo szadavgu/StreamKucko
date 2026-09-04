@@ -34,6 +34,8 @@ A projekt klónozása után az alábbi lépések szükségesek a futtatáshoz:
 - Adatbázis: MongoDB
 - Stílus & Hangulat: 100% kuckó-kompatibilis maximális odafigyelés.
 
+---
+
 Jó kódolást és kellemes böngészést kívánok a kuckóban!
 
 *By: Dae*
