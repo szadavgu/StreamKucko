@@ -1,0 +1,89 @@
+:root {
+    --bg-color: #0b0c10;
+    --card-bg: #1f2833;
+    --accent-color: #66fcf1;
+    --text-color: #c5c6c7;
+    --danger-color: #ff4c4c;
+}
+
+body.dark-mode {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #45a29e;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.admin-header h1 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+}
+
+.badge {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.user-table th, .user-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #28313b;
+}
+
+.user-table th {
+    background-color: #0b0c10;
+    color: var(--accent-color);
+}
+
+.btn-action {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-action:hover {
+    opacity: 0.8;
+}
+
+.btn-logout {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 15px;
+    border: 1px solid var(--text-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+}

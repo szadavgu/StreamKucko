@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuckó | Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body class="dark-mode">
+
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Kuckó // Admin Control Center</h1>
+            <div class="admin-info">
+                <span class="badge">ADMIN ACTIVE</span>
+                <a href="/logout" class="btn-logout">Kilépés</a>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <h2>Felhasználók kezelése</h2>
+            <div class="table-responsive">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Felhasználónév</th>
+                            <th>E-mail</th>
+                            <th>Szerepkör</th>
+                            <th>Státusz</th>
+                            <th>Műveletek</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/admin.js"></script>
+</body>
+</html>

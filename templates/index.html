@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>StreamKuckó - Belépés</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-body">
+
+<div class="login-container glass-theme">
+    <div class="login-header">
+        <h2>Üdvözöllek a Kuckóban</h2>
+        <p>Jelentkezz be a saját fiókodba, vagy böngéssz szabadon!</p>
+    </div>
+
+    <!-- Bejelentkező Űrlap -->
+    <form action="/login" method="POST" class="login-form">
+        <div class="form-group">
+            <label for="username">Felhasználónév</label>
+            <input type="text" id="username" name="username" placeholder="Pl. MoonchildDae" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Jelszó</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Bejelentkezés</button>
+    </form>
+
+    <div class="login-divider">
+        <span>vagy</span>
+    </div>
+
+    <!-- Guest és Regisztrációs Akciók -->
+    <div class="login-actions">
+        <a href="/login-guest" class="btn btn-guest">Böngészés Vendégként 🍿</a>
+        <p class="register-text">Még nincs fiókod? <a href="/register" class="link-highlight">Regisztrálj itt</a></p>
+    </div>
+</div>
+
+</body>
+</html>

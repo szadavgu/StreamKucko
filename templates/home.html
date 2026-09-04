@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Esti Filmek - Főoldal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="{% if '.' in bg_image %} background-image: url('{{ bg_image if '/' in bg_image or 'static' in bg_image else url_for('static', filename=bg_image) }}'); {% else %} background: {{ bg_image }}; background-image: none; {% endif %}">
+
+<div class="container main-container glass-theme">
+    
+    <div class="user-bar">
+        <span class="user-welcome">Üdv a kuckódban, <strong>{{ username }}</strong>! 🍿</span>
+        <a href="/logout" class="btn-logout">Kijelentkezés</a>
+    </div>
+
+    <h1 class="main-title">Esti Filmek</h1>
+    
+    <div class="table-container glass-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cím</th>
+                    <th>Műfaj</th>
+                    <th>Típus</th>
+                    <th>Elérhetőség</th>
+                </tr>
+            </thead>
+            <tbody id="film-tabla-test"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

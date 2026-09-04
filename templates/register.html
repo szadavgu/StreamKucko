@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>StreamKuckó - Regisztráció</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-body">
+
+<div class="login-container glass-theme">
+    <div class="login-header">
+        <h2>Fiók Létrehozása</h2>
+        <p>Alapítsd meg a saját streaming birodalmad!</p>
+    </div>
+
+    <form action="/register" method="POST" class="login-form">
+        <div class="form-group">
+            <label for="username">Felhasználónév</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Jelszó</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <!-- Egyéni stílus választása a Netflix/Youtube ihletés alapján -->
+        <div class="form-group">
+            <label for="custom_bg">Egyéni Főoldal Háttér (Színkód vagy Kép URL)</label>
+            <input type="text" id="custom_bg" name="custom_bg" placeholder="Pl: #141414 vagy https://kep.hu/hatter.jpg">
+            <small class="form-help">Ha üresen hagyod, egy elegáns sötét mód lesz az alapértelmezett.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Fiók Létrehozása</button>
+    </form>
+
+    <div class="login-actions">
+        <a href="{{ url_for('index') }}">Már van fiókod? Jelentkezz be itt!</a>
+    </div>
+</div>
+
+</body>
+</html>

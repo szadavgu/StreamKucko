@@ -1,0 +1,551 @@
+body {
+    background-image: url('hatter.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    
+    display: flex;
+    justify-content: center;      /* Vízszintesen középen */
+    align-items: flex-start;      /* Függőlegesen a tetejéhez igazítva */
+    
+    margin: 0;
+    padding-top: 50px;            /* Adunk neki egy kis "levegőt" a tetején */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+}
+
+h1 { 
+    color: #333; 
+    margin-bottom: 20px; 
+}
+
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto; /* Ha nagyon muszáj, mobilnézetben belsőleg görgethetővé válik, nem tolja szét az oldalt */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ez kényszeríti a fix oszlopszélességeket, nem engedi szétcsúszni */
+}
+
+thead {
+    background-color: #212529;
+    color: white;
+}
+
+/* Külön oszlopszélességek, hogy a címnek és az elérhetőségnek több hely jusson */
+th:nth-child(1), td:nth-child(1) { width: 25%; } /* Cím */
+th:nth-child(2), td:nth-child(2) { width: 15%; } /* Műfaj */
+th:nth-child(3), td:nth-child(3) { width: 15%; } /* Típus */
+th:nth-child(4), td:nth-child(4) { width: 45%; } /* Elérhetőség (ide kell a hely a path-nam) */
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    
+    /* TRÜKK A HOSSZÚ ELÉRÉSI ÚTAKHOZ: */
+    word-wrap: break-word;       /* Régebbi böngészőknek */
+    white-space: normal;         /* Engedélyezi a többsoros törést */
+    overflow-wrap: break-word;   /* Modern törésmód */
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Menü rendszer stílusa az adatlap tetején */
+.menu-rendszer {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    background: #212529;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.menu-rendszer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.menu-rendszer a:hover, .menu-rendszer a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* A Common oldal belső elrendezése a rajzod alapján */
+.film-adatlap-blokk {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left; /* Balra igazított szövegek a rajz szerint */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Felső szekció: Plakát és infók egymás mellett */
+.kartya-felso {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Film plakát fix méretű doboza */
+.plakat-helye {
+    width: 200px;
+    height: 300px;
+    background: #e9ecef;
+    border: 2px dashed #ced4da;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: bold;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.film-plakat-kep {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Jobb oldali metaadat oszlop */
+.film-infok {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.film-infok .film-cim {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #212529;
+    font-size: 28px;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 10px;
+}
+
+.film-infok p {
+    margin: 8px 0;
+    color: #495057;
+    font-size: 16px;
+}
+
+.tipus-badge {
+    background: #e2e3e5;
+    color: #383d41;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Alsó szekció: Egyéb leírás */
+.kartya-also {
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+}
+
+.kartya-also h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+}
+
+.leiras-szoveg {
+    color: #6c757d;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.film-link-stilus {
+    color: #1e2125; /* Alapértelmezett elegáns, kontrasztos szín */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.film-link-stilus:hover {
+    color: #e50914 !important; /* Rámutatáskor azonnal felvillan a dögös vörös szín! */
+    text-decoration: underline;
+}
+
+/* --- DINAMIKUS MOZIÉLMÉNY ÉS GLASSMORPHISM SZABÁLYOK --- */
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* 1. JAVÍTÁS: Ha az ADATLAPON vagyunk, a külső konténert teljesen eltüntetjük */
+.container.details-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0;
+}
+
+/* --- FŐOLDALI GLASSMORPHISM ÉS FELHASZNÁLÓI SÁV --- */
+
+/* A főoldali nagy konténer üveghatása */
+.main-container.glass-theme {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(15px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(130%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 16px;
+    padding: 35px;
+    margin-bottom: 50px;
+}
+
+/* Cím stílusa az üvegen */
+.main-title {
+    color: #111111 !important;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 25px;
+}
+
+/* Felhasználói sáv elrendezése a jobb felső sarokban */
+.user-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.user-welcome {
+    color: #222222;
+    font-size: 15px;
+}
+
+/* Minimalista, dögös kijelentkező gomb */
+.btn-logout {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: rgba(229, 9, 20, 0.1);
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background: #e50914;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(229, 9, 20, 0.2);
+}
+
+/* A táblázat konténerének üvegesítése (eltüntetjük a merev fehér hátteret) */
+.glass-table-container {
+    background: rgba(255, 255, 255, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* A táblázat sorai és cellái */
+.glass-table-container table {
+    background: transparent !important;
+}
+
+.glass-table-container td {
+    color: #1a1a1a !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Sorok feletti egérmozgás lágyítása */
+.glass-table-container tr:hover {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Sötét fejléc finomítása a táblázat tetején */
+.glass-table-container thead {
+    background-color: #1c1e22 !important;
+}
+
+/* 3. BELSŐ ADATLAP BLOKK ÜVEGHATÁSA - még légiesebb (0.75 -> 0.5) */
+.film-adatlap-blokk.glass-theme {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(15px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+/* Olvashatósági korrekciók az adatlap szövegeihez */
+.film-adatlap-blokk.glass-theme .film-cim {
+    color: #111 !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.film-adatlap-blokk.glass-theme h3 {
+    color: #222 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.film-adatlap-blokk.glass-theme .leiras-szoveg {
+    color: #2c3035 !important;
+}
+
+/* --- STREAMING IHLETÉSŰ LOGIN ÉS REGISZTRÁCIÓS STÍLUSOK --- */
+
+/* A bejelentkező oldal központi body-ja (sötétített, mozi hangulatú háttér) */
+.login-body {
+    background: #0f1115 url('hatter.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 0; /* Felülírjuk az alapértelmezett felső margót */
+}
+
+/* Lebegő, ultra-áttetsző üveg login doboz */
+.login-container.glass-theme {
+    background: rgba(15, 17, 21, 0.75) !important; /* Sötét tónusú üveg a Netflix érzetért */
+    backdrop-filter: blur(20px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-header h2 {
+    color: #ffffff;
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.login-header p {
+    color: #b3b3b3;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Űrlap elrendezés */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #e5e5e5;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #e50914; /* Netflix vörös fókusz */
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.4);
+}
+
+.form-help {
+    color: #8c8c8c;
+    font-size: 11px;
+    margin-top: -4px;
+}
+
+/* Gombok és Akciók */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background: #e50914; /* Streaming vörös */
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #f40612;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+.login-divider {
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+}
+
+.login-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 1;
+}
+
+.login-divider span {
+    background: #181a1f; /* Elfedi a vonalat a szöveg mögött */
+    padding: 0 10px;
+    color: #737373;
+    font-size: 14px;
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+/* Egyedi, hívogató GUEST gomb */
+.btn-guest {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+.btn-guest:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.register-text {
+    color: #8c8c8c;
+    font-size: 14px;
+    margin: 0;
+}
+
+.link-highlight {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.link-highlight:hover {
+    color: #e50914;
+    text-decoration: underline;
+}
+
+body {
+    background-color: #121212; /* Sötét mód, ahogy szereted */
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Az Error oldal dizájnja */
+.error-page {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hatter.jpg');
+    background-size: cover;
+}
+
+.error-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.error-message {
+    color: #ff6b6b; /* Figyelmeztető vörös a hibának */
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #357abd;
+}

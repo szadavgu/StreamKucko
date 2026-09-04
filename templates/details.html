@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ film.title }} - Adatlap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-image: url('{{ film.backdrop_url if film.backdrop_url and ('http' in film.backdrop_url or 'static' in film.backdrop_url) else url_for('static', filename=film.backdrop_url if film.backdrop_url else 'hatter.jpg') }}');">
+
+<div class="container details-container">
+    <nav class="menu-rendszer">
+        <a href="/home">Vissza a listához</a>
+        <a href="#" class="active">Film adatlap</a>
+    </nav>
+
+    <div class="film-adatlap-blokk glass-theme">
+        
+        <div class="kartya-felso">
+            <div class="plakat-helye">
+                {% if film.poster_url %}
+                    <img src="{{ film.poster_url if 'http' in film.poster_url or 'static' in film.poster_url else url_for('static', filename=film.poster_url) }}" alt="{{ film.title }} plakát" class="film-plakat-kep">
+                {% else %}
+                    <span>Film plakát</span>
+                {% endif %}
+            </div>
+            
+            <div class="film-infok">
+                <h1 class="film-cim">{{ film.title }}</h1>
+                <p><strong>Évjárat:</strong> <span class="evjarat">{{ film.year if film.year else 'Nincs megadva' }}</span></p>
+                <p><strong>Kategóriák:</strong> <span class="kategoriak">{{ film.genre if film.genre else 'Nincs megadva' }}</span></p>
+                <p><strong>Szereplők:</strong> <span class="szereplok">{{ film.stars if film.stars else 'Nincs megadva' }}</span></p>
+                <p><strong>Rendező:</strong> <span class="rendezo">{{ film.director if film.director else 'Nincs megadva' }}</span></p>
+                <p><strong>Típus:</strong> <span class="tipus-badge">{{ film.type }}</span></p>
+            </div>
+        </div>
+        
+        <div class="kartya-also">
+            <h3>Egyéb leírás</h3>
+            <p class="leiras-szoveg">
+                {{ film.description if film.description else 'Ehhez a filmhez jelenleg nincs elérhető leírás.' }}
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
