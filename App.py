@@ -1,3 +1,45 @@
+"""
+=========================================================================================
+ PROJEKT CÍM: Esti kikapcsolódást támogató, filmajánló webalkalmazás (StreamKuckó)
+=========================================================================================
+ Modul neve: App.py (Fő backend vezérlő / Entry Point)
+ Készítő: Szalanics Dávid (Neptun: UTSY4C)
+ Témavezető: Dr. Szathmáry László
+ Intézmény: Debreceni Egyetem – Informatikai Kar (Műszaki Informatikus BSc)
+
+ Leírás:
+   A Flask-alapú webalkalmazás fő vezérlő modulja. Kezeli a routingot, a HTTP kéréseket,
+   a felhasználói munkameneteket (Session), az autentikációt, valamint a MongoDB
+   adatbázis-műveleteket és az adminisztrációs végpontokat.
+
+ Felhasznált technológiák:
+   - Python 3.x, Flask, Flask-PyMongo
+   - MongoDB (NoSQL)
+   - Dotenv (Környezeti változók kezelése)
+
+ Hibakódok / HTTP Státuszok ezen modulban:
+   - 200: Sikeres művelet / lekérdezés
+   - 403: Hozzáférés megtagadva (Jogosultság hiánya / nem admin)
+   - 404: Erőforrás (film vagy felhasználó) nem található
+   - 500: Szerverhiba / kivételkezelés az adatbázis-műveletek során
+
+ Verzió: Beta 0.0
+
+ Eddigi verziók:
+ - Alpha 0.0 (25. 06. 16)
+ - Alpha 1.0 (25. 07. 09)
+ - Beta 0.0 (26. 04. 21)
+ - Beta 1.0 (26. 05. 16)
+ HARD RESET
+ - Alpha 0.0 (26. 05. 16)
+ - Alpha 0.1 (26. 05. 18)
+ - Alpha 0.2 (26. 05. 19)
+ - Beta 0.0 (26. 10. 13.)
+
+ Utolsó módosítás ideje: 2026. 10. 13.
+=========================================================================================
+"""
+
 import os
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session, abort
 from flask_pymongo import PyMongo
